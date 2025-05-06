@@ -234,6 +234,11 @@ func (m *maelstromHealthCheckClient) Close() error {
 	return nil
 }
 
+func (m *maelstromHealthCheckClient) List(ctx context.Context, in *grpc_health_v1.HealthListRequest, opts ...grpc.CallOption) (*grpc_health_v1.HealthListResponse, error) {
+	// Just return an empty response since this is not used in the actual implementation
+	return &grpc_health_v1.HealthListResponse{}, nil
+}
+
 func (m *maelstromHealthCheckClient) Watch(ctx context.Context, in *grpc_health_v1.HealthCheckRequest, opts ...grpc.CallOption) (grpc_health_v1.Health_WatchClient, error) {
 	if _, err := m.Check(ctx, in, opts...); err != nil {
 		return nil, err
